@@ -5,46 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MedAtlas DeepStudy</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=LBu_EMu78vlMWkAylIY-ullLdZ-qDNTnnVCxQfgwglp9wj41DugX3AuSvew0w0qzBfc9uH_e4QgXoSkUriTV2Fuv01LVV-vX1ZXh_rpEIbCv0ktAeyzPodiPF4y8I-uZRfqqx75p4dX4b5B9toVRhgbVN4W1sVj7b-sMeKj_zC4wTUZEi8ol447zNTH1d88k_Cg_z56fsog2ET1Odc3LSKxqXGaQmDqkeGkWN0Jk9sT8yq412T-TdglNmi0T9oFrPulU9YwttCi_vYSUFSSBag" charset="UTF-8"></script><style>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=cJpQU6oqYYUVM80UlH57FNprEjs0B6aJLqJnFEhnNYIOteAhNQlZiaPYEAI9wqkNB3uA8b2_Gx2LMxAI4pV3Wwpv1_WEkifBhyZq3c0LSlAPQXobd6sw_MxKP28VDn8ElO0bRt0LpdasNzfqiSvdMxwbFjpccxl2m1-KRxioUc_AnrbSvkSaEV4dFhpmFyZP4PD-QsGT3PjNpsARW-jb_tmH7REF6vC8Kz0U96tn_sWsVA1UIs9azr8jhsw27xs0yBwKp-mylGnT_m-hw6_43w" charset="UTF-8"></script><style>
 /* ── DESIGN TOKENS ── */
 :root {
-  --bg:     #f6f8fb;
-  --bg2:    #eef3f8;
-  --bg3:    #e5edf5;
+  --bg:     #f5f6f4;
+  --bg2:    #eeefeb;
+  --bg3:    #e4e7e1;
 
   --s1:     #ffffff;
-  --s2:     #fbfcfe;
-  --s3:     #f1f5fa;
+  --s2:     #fbfbf9;
+  --s3:     #f4f6f2;
 
-  --bdr:    #d8e1ec;
-  --bdr2:   #c2cfde;
-  --bdr3:   #aebed1;
+  --bdr:    #d8ddd4;
+  --bdr2:   #c5ccbf;
+  --bdr3:   #aeb7a7;
 
-  --ink:    #163047;
-  --ink2:   #4e657c;
-  --ink3:   #7a8ea3;
+  --ink:    #1c2420;
+  --ink2:   #56615a;
+  --ink3:   #7a857d;
 
-  --accent: #275d8c;
-  --acc2:   rgba(39,93,140,.10);
-  --acc3:   rgba(39,93,140,.18);
+  --accent: #1f3a2f;
+  --acc2:   rgba(31,58,47,.10);
+  --acc3:   rgba(31,58,47,.18);
 
-  --med:    #1f6f78;
-  --med2:   rgba(31,111,120,.10);
-  --med3:   rgba(31,111,120,.18);
+  --grn:    #335c4a;
+  --grn2:   rgba(51,92,74,.10);
+  --grn3:   rgba(51,92,74,.18);
 
-  --sage:   #6f8f86;
-  --sage2:  rgba(111,143,134,.10);
-  --sage3:  rgba(111,143,134,.18);
+  --gld:    #a6803d;
+  --gld2:   rgba(166,128,61,.12);
+  --gld3:   rgba(166,128,61,.18);
 
-  --gold:   #b08a57;
-  --gold2:  rgba(176,138,87,.12);
-  --gold3:  rgba(176,138,87,.18);
+  --red:    #b96d6d;
+  --red2:   rgba(185,109,109,.10);
+  --red3:   rgba(185,109,109,.18);
 
-  --red:    #bf6d6d;
-  --red2:   rgba(191,109,109,.10);
-  --red3:   rgba(191,109,109,.18);
+  --pur:    #6f756f;
+  --pur2:   rgba(111,117,111,.10);
+  --pur3:   rgba(111,117,111,.18);
 
-  --sh:     0 14px 34px rgba(22,48,71,.08);
+  --sh:     0 14px 34px rgba(28,36,32,.08);
   --r:      14px;
 }
 
@@ -53,7 +53,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', system-ui, sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, #f8fbff 0%, #f1f6fb 100%);
   color: var(--ink);
   min-height: 100vh;
   overflow-x: hidden;
@@ -64,8 +64,8 @@ body::before {
   content: '';
   position: fixed; inset: 0;
   background-image:
-    linear-gradient(rgba(91,156,246,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(91,156,246,.03) 1px, transparent 1px);
+    linear-gradient(rgba(95,134,197,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95,134,197,.025) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none; z-index: 0;
 }
@@ -74,7 +74,7 @@ body::after {
   content: '';
   position: fixed; top: -280px; left: 50%; transform: translateX(-50%);
   width: 960px; height: 560px;
-  background: radial-gradient(ellipse, rgba(91,156,246,.06) 0%, transparent 65%);
+  background: radial-gradient(ellipse, rgba(95,134,197,.08) 0%, transparent 68%);
   pointer-events: none; z-index: 0;
 }
 
@@ -168,10 +168,10 @@ textarea:focus { border-color: var(--accent); }
 }
 .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 .btn:active { transform: scale(.97); }
-.btn-p { background: linear-gradient(135deg, var(--accent), #3060e0); color: #fff; }
+.btn-p { background: linear-gradient(135deg, var(--accent), #7ea0d8); color: #fff; }
 .btn-a { background: var(--s3); border: 1px solid var(--bdr2); color: var(--ink2); }
 .btn-a:hover { border-color: var(--accent); color: var(--accent); }
-.btn-g { background: linear-gradient(135deg, var(--grn), #22a060); color: #051208; }
+.btn-g { background: linear-gradient(135deg, var(--grn), #7eb6a5); color: #fff; }
 .btn-sm { padding: 7px 13px; font-size: .72rem; }
 
 /* ── PILLS ── */
@@ -316,6 +316,68 @@ textarea:focus { border-color: var(--accent); }
 .pm-fail { background: var(--red2); color: var(--red); }
 .prow .pc { color: var(--ink2); margin-left: auto; }
 
+
+.upload-note {
+  margin-top:10px; padding:10px 12px; border-radius:10px;
+  background:var(--acc2); border:1px dashed var(--acc3);
+  color:var(--ink2); font-size:.75rem; line-height:1.55;
+}
+.up-hdr { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px; }
+.up-hdr .mini { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--ink3); text-transform:uppercase; letter-spacing:.08em; }
+.docs-stack { display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+.doc-card {
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+  padding:12px 14px; border-radius:12px; background:linear-gradient(180deg,#ffffff,#f9fbfd);
+  border:1px solid var(--bdr); box-shadow: var(--sh);
+}
+.doc-main { min-width:0; }
+.doc-name { font-size:.88rem; font-weight:700; color:var(--ink); line-height:1.35; word-break:break-word; }
+.doc-sub { margin-top:4px; color:var(--ink2); font-size:.73rem; }
+.doc-meta { margin-top:7px; font-size:.62rem; color:var(--ink3); font-family:'DM Mono',monospace; }
+.doc-remove {
+  border:none; width:34px; height:34px; border-radius:10px; flex-shrink:0; cursor:pointer;
+  background:linear-gradient(180deg,#ef7b7b,#db5f5f); color:#fff; font-size:1.05rem; font-weight:700;
+  box-shadow:0 8px 20px rgba(217,101,101,.18);
+}
+.doc-remove:hover { filter:brightness(1.04); transform:translateY(-1px); }
+
+.snip {
+  box-shadow: var(--sh);
+  background: linear-gradient(180deg, var(--s1), var(--s2));
+}
+.snip-text {
+  max-height: 340px; overflow-y: auto; padding-right: 8px;
+  white-space: normal;
+}
+.snip-text::-webkit-scrollbar { width: 8px; }
+.snip-text::-webkit-scrollbar-thumb { background: var(--bdr3); border-radius: 999px; }
+.snip-text::-webkit-scrollbar-track { background: var(--bg2); border-radius: 999px; }
+
+.src-body { background: linear-gradient(180deg, var(--s1), var(--s2)); }
+.src-body-scroll { max-height: 280px; overflow-y: auto; padding-right: 6px; }
+.src-body-scroll::-webkit-scrollbar { width: 8px; }
+.src-body-scroll::-webkit-scrollbar-thumb { background: var(--bdr3); border-radius: 999px; }
+
+.img-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.img-card {
+  border:1px solid var(--bdr); border-radius:12px; overflow:hidden;
+  background:linear-gradient(180deg,#ffffff,#f9fbfd); box-shadow:var(--sh);
+}
+.img-head {
+  padding:10px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:var(--bg2); border-bottom:1px solid var(--bdr);
+}
+.img-head h4 { font-size:.8rem; }
+.img-wrap { aspect-ratio: 16/10; background:var(--bg3); display:grid; place-items:center; overflow:hidden; }
+.img-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+.img-ph { color:var(--ink3); font-size:.8rem; padding:20px; text-align:center; line-height:1.6; }
+.img-body { padding:12px 14px; }
+.img-cap { color:var(--ink2); font-size:.8rem; line-height:1.7; }
+.img-list { list-style:none; display:flex; flex-direction:column; gap:6px; margin-top:10px; }
+.img-list li { color:var(--ink2); font-size:.76rem; line-height:1.6; }
+.img-note { margin-top:10px; padding:10px 12px; border-radius:10px; background:var(--gld2); border:1px solid var(--gld3); color:var(--ink2); font-size:.74rem; line-height:1.55; }
+@media (max-width: 900px) { .img-grid { grid-template-columns:1fr; } }
+
 /* ── FOOTER ── */
 .footer { margin-top: 12px; text-align: center; font-size: .6rem; color: var(--ink3); font-family: 'DM Mono', monospace; line-height: 1.7; border-top: 1px solid var(--bdr); padding-top: 10px; }
 
@@ -332,32 +394,95 @@ textarea:focus { border-color: var(--accent); }
 .topbar, .hero, .panel, .box, .sitem, .doc-card, .snip, .src-card, .obs-stat {
   backdrop-filter: blur(6px);
 }
+body {
+  color: var(--ink);
+}
 input, textarea, select {
   color: var(--ink);
 }
 ::placeholder {
-  color: #8fa0b4;
+  color: #90a1b4;
+}
+a {
+  color: var(--accent);
+}
+a:hover {
+  color: #204d73;
 }
 .tag, .pill {
   border-color: var(--bdr2) !important;
   background: #f7fafc !important;
   color: var(--ink2) !important;
 }
-.tag-b { background: var(--acc2) !important; color: var(--accent) !important; border-color: rgba(39,93,140,.16) !important; }
-.tag-g { background: var(--med2) !important; color: var(--med) !important; border-color: rgba(31,111,120,.16) !important; }
-.tag-y { background: var(--gold2) !important; color: var(--gold) !important; border-color: rgba(176,138,87,.18) !important; }
-.muted, .meta, .doc-sub, .doc-meta, .ol { color: var(--ink2) !important; }
-.snip, .src-card, .sitem, .box, .panel {
+.tag-b { background: var(--acc2) !important; color: var(--accent) !important; border-color: rgba(43,95,138,.16) !important; }
+.tag-g { background: var(--grn2) !important; color: var(--grn) !important; border-color: rgba(47,111,115,.16) !important; }
+.tag-y { background: var(--gld2) !important; color: var(--gld) !important; border-color: rgba(166,132,84,.18) !important; }
+
+.snip, .src-card, .sitem, .box, .panel, .doc-card {
   border: 1px solid var(--bdr) !important;
   box-shadow: var(--sh) !important;
 }
-.doc-remove {
-  background: linear-gradient(180deg, #cb7b7b, #b96262) !important;
+.meta, .muted, .doc-sub, .doc-meta, .ol {
+  color: var(--ink2) !important;
 }
-a { color: var(--accent); }
-a:hover { color: #1f4e77; }
+.doc-remove {
+  background: linear-gradient(180deg, #c77a7a, #b56666) !important;
+}
 .logo-badge, .brand-mark {
-  box-shadow: 0 10px 25px rgba(39,93,140,.14) !important;
+  box-shadow: 0 10px 25px rgba(43,95,138,.14) !important;
+}
+.notice, .upload-note {
+  background: rgba(43,95,138,.06) !important;
+  border-color: rgba(43,95,138,.16) !important;
+}
+
+
+body { color: var(--ink) !important; background: linear-gradient(180deg,#f8f8f5 0%, #f2f4ef 100%) !important; }
+body::before {
+  background-image:
+    linear-gradient(rgba(31,58,47,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,58,47,.02) 1px, transparent 1px) !important;
+}
+body::after {
+  background: radial-gradient(ellipse, rgba(166,128,61,.06) 0%, transparent 70%) !important;
+}
+a { color: var(--accent) !important; }
+a:hover { color: #162b23 !important; }
+
+.tag, .pill {
+  border-color: var(--bdr2) !important;
+  background: #f8f8f5 !important;
+  color: var(--ink2) !important;
+}
+.tag-b { background: var(--acc2) !important; color: var(--accent) !important; border-color: rgba(31,58,47,.16) !important; }
+.tag-g { background: var(--grn2) !important; color: var(--grn) !important; border-color: rgba(51,92,74,.16) !important; }
+.tag-y { background: var(--gld2) !important; color: var(--gld) !important; border-color: rgba(166,128,61,.18) !important; }
+
+.snip, .src-card, .sitem, .box, .panel, .doc-card, .obs-stat {
+  border: 1px solid var(--bdr) !important;
+  box-shadow: var(--sh) !important;
+  background: linear-gradient(180deg,#ffffff,#fafbf8) !important;
+}
+.meta, .muted, .doc-sub, .doc-meta, .ol { color: var(--ink2) !important; }
+
+.btn-p {
+  background: linear-gradient(135deg, #1f3a2f, #355646) !important;
+  color: #fff !important;
+}
+.btn-g {
+  background: linear-gradient(135deg, #a6803d, #bc9857) !important;
+  color: #fff !important;
+}
+.doc-remove {
+  background: linear-gradient(180deg, #3b4a42, #222c27) !important;
+  color: #fff !important;
+}
+.notice, .upload-note {
+  background: rgba(166,128,61,.06) !important;
+  border-color: rgba(166,128,61,.16) !important;
+}
+.logo-badge, .brand-mark {
+  box-shadow: 0 10px 25px rgba(31,58,47,.12) !important;
 }
 
 </style>
@@ -404,6 +529,12 @@ a:hover { color: #1f4e77; }
     </div>
     <div class="prog"><div id="pb" class="bar"></div></div>
     <div id="status" class="status-row">Aguardando arquivos.</div>
+    <div class="upload-note">Os PDFs indexados ficam listados abaixo e podem ser removidos individualmente do acervo.</div>
+    <div class="up-hdr">
+      <div class="mini">Documentos no acervo</div>
+      <span class="tag tag-b" id="uploadDocsCount">0 arquivos</span>
+    </div>
+    <div id="uploadDocs" class="docs-stack"></div>
   </div>
 </div>
 
@@ -514,6 +645,15 @@ a:hover { color: #1f4e77; }
         </div>
 
       </div><!-- /3col -->
+      <div class="panel box" style="margin-bottom:12px">
+        <div class="col-hdr">
+          <h3>🖼 Comparação Visual</h3>
+          <span class="tag tag-p">normal × patológico</span>
+        </div>
+        <div id="imgcmp"></div>
+      </div>
+
+
 
       <!-- OBSERVABILITY DETALHADA -->
       <div class="panel box" id="obsPanel" style="margin-bottom:12px;display:none">
@@ -583,6 +723,26 @@ addD(['nefrolitiase','nefrolitíase','calculo renal','litiase renal','pedra rim'
   hguide:{
     normal:['Túbulo proximal: borda em escova apical, mitocôndrias laterais abundantes','Pelve renal: urotélio normal 2–3 camadas — compare com ulcerado pelo cálculo'],
     links:[{t:'Kidney EM atlas',url:'https://histologyguide.com/EM-atlas/16-kidney.html'},{t:'Kidney histology',url:'https://histologyguide.com/slideshow/HS-007-kidney.html'}]
+  },
+  compare:{
+    title:'Nefrolitíase — normal × patológico',
+    healthy:{
+      label:'Rim de referência',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0592_KidneyAnatomy_01.png',
+      source_url:'https://commons.wikimedia.org/wiki/File:Blausen_0592_KidneyAnatomy_01.png',
+      source_label:'Imagem anatômica de rim (Wikimedia Commons)',
+      caption:'Use esta imagem como referência anatômica para localizar cálices, pelve renal, ureter proximal e a relação córtico-medular.',
+      bullets:['Contorno renal preservado','Sem dilatação pielocalicinal','Sem foco hiperdenso compatível com cálculo']
+    },
+    pathology:{
+      label:'Rim com cálculo / obstrução',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/KidneyStone.JPG',
+      source_url:'https://commons.wikimedia.org/wiki/File:KidneyStone.JPG',
+      source_label:'TC com cálculo ureteral (Wikimedia Commons)',
+      caption:'Imagem de cálculo ureteral proximal com obstrução leve. Compare a topografia da via excretora e procure sinais de hidronefrose a montante.',
+      bullets:['Foco hiperdenso compatível com cálculo','Obstrução do fluxo urinário','Dilatação a montante sugere repercussão obstrutiva']
+    },
+    note:'A comparação visual combina uma referência anatômica normal com um exemplo patológico para estudo lado a lado.'
   }
 });
 
@@ -600,6 +760,26 @@ addD(['cirrose','cirrose hepatica','cirrose hepática','fibrose hepatica','hepat
   hguide:{
     normal:['Lóbulo hepático: veia centrolobular central, espaços portais com tríade','Hepatócitos em lâminas de UMA célula, trama reticulínica fina'],
     links:[{t:'Liver histology',url:'https://histologyguide.com/slideshow/HS-004-liver.html'}]
+  },
+  compare:{
+    title:'Cirrose hepática — normal × patológico',
+    healthy:{
+      label:'Fígado de referência',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Liver_anatomy.png',
+      source_url:'https://commons.wikimedia.org/wiki/File:Liver_anatomy.png',
+      source_label:'Anatomia hepática (Wikimedia Commons)',
+      caption:'Referência anatômica para lobos, hilo hepático e superfície externa regular.',
+      bullets:['Contorno liso','Parênquima homogêneo','Arquitetura preservada']
+    },
+    pathology:{
+      label:'Fígado cirrótico',
+      img:null,
+      source_url:'https://radiopaedia.org/articles/hepatic-cirrhosis?lang=us',
+      source_label:'Radiopaedia — cirrose hepática',
+      caption:'Use os links da fonte para revisar contorno bosselado, retração volumétrica e sinais de hipertensão portal.',
+      bullets:['Contorno nodular','Distorção arquitetural','Sinais de hipertensão portal']
+    },
+    note:'Para cirrose, a coluna patológica permanece linkada para revisão externa quando não houver imagem inline configurada.'
   }
 });
 
@@ -879,6 +1059,22 @@ function setStatus(msg, kind = '') {
 }
 function setProgress(pct) { $('pb').style.width = `${Math.max(0, Math.min(100, pct))}%`; }
 
+
+function buildGoogleSiteSearch(domain, query, extra='') {
+  const q = `site:${domain} ${query} ${extra}`.trim();
+  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+}
+
+function pickImageCompare(query, kb) {
+  if (kb?.compare) return kb.compare;
+  return {
+    title: query,
+    healthy: null,
+    pathology: null,
+    note: 'Comparação visual ainda não mapeada no banco local para este tema. Os links abaixo continuam disponíveis para consulta orientada.'
+  };
+}
+
 function srcBadge(name) {
   const m = { 'UNICAMP AnatPat': 'var(--accent)', 'Radiopaedia': 'var(--red)', 'HistologyGuide': 'var(--grn)' };
   const c = m[name] || 'var(--accent)';
@@ -905,18 +1101,46 @@ function updateKPIs() {
   $('kq').textContent = loadHistory().length;
 }
 
+
 function renderFiles() {
-  const box = $('fl');
-  const docs = Object.values(_indexData);
-  if (!docs.length) { box.innerHTML = '<div class="sitem"><p>Nenhum PDF indexado.</p></div>'; return; }
-  box.innerHTML = docs.map(d => `
+  const docsEntries = Object.entries(_indexData);
+  const docs = docsEntries.map(([docId, d]) => ({ doc_id: docId, ...d }));
+  const sidebar = $('fl');
+  const uploadBox = $('uploadDocs');
+  $('uploadDocsCount').textContent = `${docs.length} arquivo${docs.length === 1 ? '' : 's'}`;
+
+  if (!docs.length) {
+    const emptyHtml = '<div class="sitem"><p>Nenhum PDF indexado.</p></div>';
+    sidebar.innerHTML = emptyHtml;
+    uploadBox.innerHTML = '<div class="sitem"><p>Nenhum documento no acervo no momento.</p></div>';
+    return;
+  }
+
+  sidebar.innerHTML = docs.map(d => `
     <div class="sitem">
-      <h4>📄 ${esc(d.name)}</h4>
-      <p>${d.pages} págs · ${d.text_pages || 0} texto · ${d.ocr_pages || 0} OCR · ${d.failed_pages || 0} falhas</p>
-      <div class="meta">${d.chunk_count || 0} chunks · ${Math.round((d.char_count || 0) / 1000)}k chars · ${d.status}</div>
+      <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
+        <div style="min-width:0">
+          <h4>📄 ${esc(d.name)}</h4>
+          <p>${d.pages} págs · ${d.text_pages || 0} texto · ${d.ocr_pages || 0} OCR · ${d.failed_pages || 0} falhas</p>
+          <div class="meta">${d.chunk_count || 0} chunks · ${Math.round((d.char_count || 0) / 1000)}k chars · ${d.status}</div>
+        </div>
+        <button class="doc-remove" title="Remover PDF do acervo" onclick="deleteDoc('${esc(d.doc_id)}')">×</button>
+      </div>
+    </div>
+  `).join('');
+
+  uploadBox.innerHTML = docs.map(d => `
+    <div class="doc-card">
+      <div class="doc-main">
+        <div class="doc-name">📄 ${esc(d.name)}</div>
+        <div class="doc-sub">${d.pages} págs · ${d.text_pages || 0} com texto · ${d.ocr_pages || 0} via OCR · ${d.failed_pages || 0} falhas</div>
+        <div class="doc-meta">${d.chunk_count || 0} chunks · ${Math.round((d.char_count || 0) / 1000)}k chars · status: ${esc(d.status || 'ok')}</div>
+      </div>
+      <button class="doc-remove" title="Remover PDF do acervo" onclick="deleteDoc('${esc(d.doc_id)}')">×</button>
     </div>
   `).join('');
 }
+
 
 function renderHistory() {
   const h = loadHistory();
@@ -972,13 +1196,16 @@ function renderSnippets(results, query) {
 }
 
 // ── Render fontes ──
+
 function renderSources(query, kb) {
+  const anatSearch = buildGoogleSiteSearch('anatpat.unicamp.br', query, kb?.name || '');
+  const histSearch = buildGoogleSiteSearch('histologyguide.com', query, kb?.name || '');
   if (!kb) {
     const links_html = [
-      { name: 'UNICAMP AnatPat', url: `https://www.google.com/search?q=site%3Aanatpat.unicamp.br+${encodeURIComponent(query)}`, note: 'Busca no domínio UNICAMP AnatPat' },
+      { name: 'UNICAMP AnatPat', url: anatSearch, note: 'Busca orientada pelo parâmetro no domínio AnatPat' },
       { name: 'Radiopaedia', url: `https://radiopaedia.org/search?lang=us&q=${encodeURIComponent(query)}&scope=articles`, note: 'Artigos Radiopaedia' },
       { name: 'Radiopaedia', url: `https://radiopaedia.org/search?lang=us&q=${encodeURIComponent(query)}&scope=cases`, note: 'Casos Radiopaedia' },
-      { name: 'HistologyGuide', url: `https://www.google.com/search?q=site%3Ahistologyguide.com+${encodeURIComponent(query)}`, note: 'Busca HistologyGuide' }
+      { name: 'HistologyGuide', url: histSearch, note: 'Busca orientada no HistologyGuide' }
     ];
     $('srcs').innerHTML = `
       <div class="notice ny">⚠ Tema não mapeado no banco local. Links gerais gerados:</div>
@@ -993,42 +1220,52 @@ function renderSources(query, kb) {
     return;
   }
   const u = kb.unicamp || {}, r = kb.radio || {}, h = kb.hguide || {};
+  const uLinks = [
+    { t: 'Buscar tema na UNICAMP', url: anatSearch },
+    ...(u.links || [])
+  ];
+  const hLinks = [
+    { t: 'Buscar tema no HistologyGuide', url: histSearch },
+    ...(h.links || [])
+  ];
+
   $('srcs').innerHTML = [
-    `<div class="src-block" style="border-color:rgba(91,156,246,.35)">
-      <div class="src-head" style="background:rgba(91,156,246,.06)">
+    `<div class="src-block" style="border-color:var(--acc3)">
+      <div class="src-head" style="background:var(--acc2)">
         <div class="src-name">${srcBadge('UNICAMP AnatPat')} Anatomia Patológica</div>
-        <div class="src-links">${(u.links||[]).map(l=>`<a class="src-link" href="${l.url}" target="_blank" rel="noopener">↗ ${esc(l.t)}</a>`).join('')}</div>
+        <div class="src-links">${uLinks.map(l=>`<a class="src-link" href="${l.url}" target="_blank" rel="noopener">↗ ${esc(l.t)}</a>`).join('')}</div>
       </div>
-      <div class="src-body">
+      <div class="src-body"><div class="src-body-scroll">
         <div class="src-label">Macroscopia</div>
         <ul class="src-ul">${(u.macro||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
         <div class="src-sep"></div>
         <div class="src-label">Histologia</div>
         <ul class="src-ul">${(u.histo||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
-      </div>
+      </div></div>
     </div>`,
-    `<div class="src-block" style="border-color:rgba(238,85,85,.35)">
-      <div class="src-head" style="background:rgba(238,85,85,.06)">
+    `<div class="src-block" style="border-color:var(--red3)">
+      <div class="src-head" style="background:var(--red2)">
         <div class="src-name">${srcBadge('Radiopaedia')} Achados Radiológicos</div>
         <div class="src-links">${(r.links||[]).map(l=>`<a class="src-link" href="${l.url}" target="_blank" rel="noopener">↗ ${esc(l.t)}</a>`).join('')}</div>
       </div>
-      <div class="src-body">
+      <div class="src-body"><div class="src-body-scroll">
         <div class="src-label">TC · RM · US · RX</div>
         <ul class="src-ul">${(r.achados||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
-      </div>
+      </div></div>
     </div>`,
-    `<div class="src-block" style="border-color:rgba(60,200,130,.35)">
-      <div class="src-head" style="background:rgba(60,200,130,.06)">
+    `<div class="src-block" style="border-color:var(--grn3)">
+      <div class="src-head" style="background:var(--grn2)">
         <div class="src-name">${srcBadge('HistologyGuide')} Histologia Normal</div>
-        <div class="src-links">${(h.links||[]).map(l=>`<a class="src-link" href="${l.url}" target="_blank" rel="noopener">↗ ${esc(l.t)}</a>`).join('')}</div>
+        <div class="src-links">${hLinks.map(l=>`<a class="src-link" href="${l.url}" target="_blank" rel="noopener">↗ ${esc(l.t)}</a>`).join('')}</div>
       </div>
-      <div class="src-body">
+      <div class="src-body"><div class="src-body-scroll">
         <div class="src-label">Tecido normal — compare com o patológico</div>
         <ul class="src-ul">${(h.normal||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
-      </div>
+      </div></div>
     </div>`
   ].join('');
 }
+
 
 // ── Render síntese ──
 function renderSynthesis(query, results, kb, terms) {
@@ -1096,7 +1333,7 @@ async function checkBackend() {
   } catch (e) {
     $('backendStatusChip').textContent = '❌ Backend offline';
     $('backendStatusChip').style.color = 'var(--red)';
-    setStatus('⚠ Backend não encontrado em localhost:8742. Execute: python backend.py', 'err');
+    setStatus('⚠ Backend indisponível no domínio publicado. Aguarde alguns instantes e atualize a página.', 'err');
   }
   return false;
 }
@@ -1142,23 +1379,107 @@ async function uploadPDFs(files) {
     await fetchIndex();
 
     // Mostra painel de observabilidade
-    showObs(d.results?.[0]);
+    showObs(d.results || []);
   } catch (e) {
     setStatus(`Erro de conexão com o backend: ${e.message}`, 'err');
   }
 }
 
-function showObs(docResult) {
-  if (!docResult) return;
+
+function showObs(docResults) {
+  const items = Array.isArray(docResults) ? docResults : (docResults ? [docResults] : []);
+  if (!items.length) return;
   $('obsPanel').style.display = 'block';
+
+  const totalPages = items.reduce((a,x)=>a+(x.pages||0),0);
+  const totalText = items.reduce((a,x)=>a+(x.text_pages||0),0);
+  const totalOCR = items.reduce((a,x)=>a+(x.ocr_pages||0),0);
+  const totalFail = items.reduce((a,x)=>a+(x.failed_pages||0),0);
+  const totalChunks = items.reduce((a,x)=>a+(x.chunks||0),0);
+  const totalChars = items.reduce((a,x)=>a+(x.char_count||0),0);
+
   $('obsStats').innerHTML = [
-    { v: docResult.pages, l: 'Páginas totais' },
-    { v: docResult.text_pages || 0, l: 'Com texto' },
-    { v: docResult.ocr_pages || 0, l: 'Via OCR' },
-    { v: docResult.failed_pages || 0, l: 'Falhou' },
-    { v: docResult.chunks, l: 'Chunks criados' },
-    { v: Math.round((docResult.char_count || 0) / 1000) + 'k', l: 'Caracteres' }
+    { v: items.length, l: 'Arquivos' },
+    { v: totalPages, l: 'Páginas totais' },
+    { v: totalText, l: 'Com texto' },
+    { v: totalOCR, l: 'Via OCR' },
+    { v: totalFail, l: 'Falhou' },
+    { v: totalChunks, l: 'Chunks criados' },
+    { v: Math.round(totalChars / 1000) + 'k', l: 'Caracteres' }
   ].map(s => `<div class="obs-stat"><div class="ov">${s.v}</div><div class="ol">${s.l}</div></div>`).join('');
+
+  const rows = [];
+  items.forEach(doc => {
+    rows.push(`<div class="prow"><span class="pn">📄</span><span>${esc(doc.name || 'arquivo')}</span><span class="pc">${doc.pages||0} págs · ${doc.chunks||0} chunks</span></div>`);
+  });
+  $('obsPages').innerHTML = rows.join('');
+}
+
+
+
+async function deleteDoc(docId) {
+  if (!docId) return;
+  const ok = confirm('Remover este PDF do acervo indexado?');
+  if (!ok) return;
+  try {
+    setStatus('Removendo documento do acervo...');
+    const r = await fetch(`${API}/delete/${encodeURIComponent(docId)}`);
+    const d = await r.json();
+    if (d.error) {
+      setStatus(`Erro ao remover: ${d.error}`, 'err');
+      return;
+    }
+    await fetchIndex();
+    setStatus('Documento removido do acervo.', 'ok');
+    setProgress(0);
+  } catch (e) {
+    setStatus(`Erro ao remover documento: ${e.message}`, 'err');
+  }
+}
+
+function renderImageCompare(query, kb) {
+  const cmp = pickImageCompare(query, kb);
+  const healthy = cmp.healthy || {};
+  const pathology = cmp.pathology || {};
+
+  function card(label, item, tone='var(--acc3)') {
+    const imgHtml = item.img
+      ? `<div class="img-wrap"><img src="${item.img}" alt="${esc(label)}"></div>`
+      : `<div class="img-wrap"><div class="img-ph">Imagem inline ainda não configurada para este tema.<br>Use o link da fonte para revisão dirigida.</div></div>`;
+    const bullets = (item.bullets || []).map(x => `<li>${esc(x)}</li>`).join('');
+    const link = item.source_url ? `<a class="src-link" href="${item.source_url}" target="_blank" rel="noopener">↗ ${esc(item.source_label || 'Abrir fonte')}</a>` : '';
+    return `
+      <div class="img-card" style="border-color:${tone}">
+        <div class="img-head">
+          <h4>${esc(label)}</h4>
+          ${link}
+        </div>
+        ${imgHtml}
+        <div class="img-body">
+          <div class="img-cap">${esc(item.caption || 'Sem descrição adicional.')}</div>
+          ${bullets ? `<ul class="img-list">${bullets}</ul>` : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  const helperLinks = `
+    <div class="img-note">
+      <strong>Busca orientada:</strong>
+      <a class="src-link" href="${buildGoogleSiteSearch('anatpat.unicamp.br', query, 'anatpat')}" target="_blank" rel="noopener">UNICAMP AnatPat</a>
+      <a class="src-link" href="https://radiopaedia.org/search?lang=us&q=${encodeURIComponent(query)}&scope=articles" target="_blank" rel="noopener">Radiopaedia</a>
+      <a class="src-link" href="${buildGoogleSiteSearch('histologyguide.com', query, 'histology')}" target="_blank" rel="noopener">HistologyGuide</a>
+    </div>
+  `;
+
+  $('imgcmp').innerHTML = `
+    <div class="img-grid">
+      ${card(healthy.label || 'Referência normal', healthy, 'var(--grn3)')}
+      ${card(pathology.label || 'Referência patológica', pathology, 'var(--red3)')}
+    </div>
+    ${cmp.note ? `<div class="img-note">${esc(cmp.note)}</div>` : ''}
+    ${helperLinks}
+  `;
 }
 
 async function performSearch() {
@@ -1199,6 +1520,7 @@ async function performSearch() {
 
   renderSnippets(backendResults, query);
   renderSources(query, kb);
+  renderImageCompare(query, kb);
   renderSynthesis(query, backendResults, kb, expandedTerms);
   $('fp').value = buildPrompt(query, backendResults, kb, expandedTerms);
 
