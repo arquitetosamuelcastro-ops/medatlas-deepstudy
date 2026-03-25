@@ -1601,6 +1601,10 @@ async function uploadPDFs(files) {
   setStatus(`Enviando ${files.length} arquivo(s) para o backend...`);
   setProgress(5);
 
+  if (files.length > 3) {
+    setStatus('Lote grande detectado. No ambiente online, prefira poucos PDFs por vez para evitar falha por memória.', 'err');
+  }
+
   const form = new FormData();
   for (const f of files) form.append('files', f);
   form.append('ocr', doOCR ? 'true' : 'false');
@@ -1608,11 +1612,35 @@ async function uploadPDFs(files) {
   try {
     setProgress(20);
     setStatus(`Processando PDFs no backend (pdfplumber + Tesseract)...`);
-    const r = await fetch(`${API}/upload`, { method: 'POST', body: form });
-    const d = await r.json();
+
+    const r = await fetch(`${API}/upload`, {
+      method: 'POST',
+      body: form
+    });
+
+    const raw = await r.text();
+    let d = {};
+
+    try {
+      d = raw ? JSON.parse(raw) : {};
+    } catch (parseErr) {
+      throw new Error(`Resposta inválida do backend (status ${r.status})`);
+    }
+
+    if (!r.ok) {
+      throw new Error(
+        d?.error ||
+        d?.detail ||
+        `Falha no upload (status ${r.status})`
+      );
+    }
+
     setProgress(90);
 
-    if (d.error) { setStatus(`Erro: ${d.error}`, 'err'); return; }
+    if (d.error) {
+      setStatus(`Erro: ${d.error}`, 'err');
+      return;
+    }
 
     for (const res of d.results || []) {
       if (res.error) {

@@ -10,6 +10,7 @@ MedAtlas DeepStudy — FastAPI Agentic RAG v4
 """
 
 import asyncio
+import gc
 import hashlib
 import json
 import math
@@ -526,31 +527,84 @@ async def api_delete_source(sid: str):
 @app.post("/api/upload")
 async def api_upload(files: List[UploadFile] = File(...), ocr: bool = Form(True)):
     if not HAS_PDFPLUMBER:
-        raise HTTPException(status_code=500, detail="pdfplumber não instalado")
+        return JSONResponse(
+            status_code=500,
+            content={"error": "pdfplumber não instalado"}
+        )
+
     results = []
     idx = load_index()
-    for up in files:
-        file_bytes = await up.read()
-        doc_id = hashlib.md5((up.filename + "::").encode("utf-8") + file_bytes).hexdigest()[:12]
-        extracted = await asyncio.to_thread(extract_pdf_sync, file_bytes, up.filename, ocr)
-        extracted["uploaded_at"] = int(time.time())
-        extracted["doc_id"] = doc_id
-        idx.setdefault("docs", {})[doc_id] = extracted
-        results.append({
-            "doc_id": doc_id,
-            "name": up.filename,
-            "pages": extracted["pages"],
-            "text_pages": extracted.get("text_pages", 0),
-            "ocr_pages": extracted.get("ocr_pages", 0),
-            "failed_pages": extracted.get("failed_pages", 0),
-            "chunks": len(extracted["chunks"]),
-            "char_count": extracted["char_count"],
-            "status": extracted["status"],
-            "ocr_available": OCR_AVAILABLE,
-            "page_stats": extracted.get("page_stats", [])[:200],
+
+    try:
+        for up in files:
+            try:
+                file_bytes = await up.read()
+
+                if not file_bytes:
+                    results.append({
+                        "name": up.filename,
+                        "error": "Arquivo vazio ou leitura falhou"
+                    })
+                    continue
+
+                doc_id = hashlib.md5(
+                    (up.filename + "::").encode("utf-8") + file_bytes
+                ).hexdigest()[:12]
+
+                extracted = await asyncio.to_thread(
+                    extract_pdf_sync,
+                    file_bytes,
+                    up.filename,
+                    ocr
+                )
+
+                extracted["uploaded_at"] = int(time.time())
+                extracted["doc_id"] = doc_id
+
+                idx.setdefault("docs", {})[doc_id] = extracted
+
+                results.append({
+                    "doc_id": doc_id,
+                    "name": up.filename,
+                    "pages": extracted.get("pages", 0),
+                    "text_pages": extracted.get("text_pages", 0),
+                    "ocr_pages": extracted.get("ocr_pages", 0),
+                    "failed_pages": extracted.get("failed_pages", 0),
+                    "chunks": len(extracted.get("chunks", [])),
+                    "char_count": extracted.get("char_count", 0),
+                    "status": extracted.get("status", "ok"),
+                    "ocr_available": OCR_AVAILABLE,
+                    "page_stats": extracted.get("page_stats", [])[:200],
+                })
+
+                save_index(idx)
+
+                del file_bytes
+                del extracted
+                gc.collect()
+
+            except Exception as e:
+                results.append({
+                    "name": getattr(up, "filename", "arquivo"),
+                    "error": str(e)[:300]
+                })
+                gc.collect()
+
+        return JSONResponse({
+            "results": results,
+            "total": len(results),
+            "ok": True
         })
-    save_index(idx)
-    return {"results": results, "total": len(results)}
+
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": f"Falha geral no upload: {str(e)[:300]}",
+                "results": results,
+                "total": len(results)
+            }
+        )
 
 
 @app.get("/api/search")
