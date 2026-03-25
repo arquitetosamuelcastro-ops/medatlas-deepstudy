@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MedAtlas DeepStudy</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=cJpQU6oqYYUVM80UlH57FNprEjs0B6aJLqJnFEhnNYIOteAhNQlZiaPYEAI9wqkNB3uA8b2_Gx2LMxAI4pV3Wwpv1_WEkifBhyZq3c0LSlAPQXobd6sw_MxKP28VDn8ElO0bRt0LpdasNzfqiSvdMxwbFjpccxl2m1-KRxioUc_AnrbSvkSaEV4dFhpmFyZP4PD-QsGT3PjNpsARW-jb_tmH7REF6vC8Kz0U96tn_sWsVA1UIs9azr8jhsw27xs0yBwKp-mylGnT_m-hw6_43w" charset="UTF-8"></script><style>
+<style>
 /* ── DESIGN TOKENS ── */
 :root {
   --bg:     #f5f6f4;
@@ -485,6 +485,151 @@ a:hover { color: #162b23 !important; }
   box-shadow: 0 10px 25px rgba(31,58,47,.12) !important;
 }
 
+
+/* ===== Agentic RAG Workbench ===== */
+.agentic-workbench {
+  margin: 18px 0 18px 0;
+  border: 1px solid var(--bdr);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, #fafbf8);
+  box-shadow: var(--sh);
+  overflow: hidden;
+}
+.agentic-head {
+  display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+  padding:14px 16px;
+  background: linear-gradient(135deg, rgba(31,58,47,.05), rgba(166,128,61,.08));
+  border-bottom:1px solid var(--bdr);
+}
+.agentic-head h3 { margin:0; color:var(--ink); font-size:1.04rem; }
+.agentic-head p { margin:5px 0 0 0; color:var(--ink2); font-size:.78rem; line-height:1.55; }
+.agentic-grid {
+  display:grid;
+  grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr);
+  gap:18px;
+  padding:16px;
+}
+.agentic-card {
+  border:1px solid var(--bdr);
+  border-radius:14px;
+  background:linear-gradient(180deg,#fff,#fafbf8);
+  box-shadow:var(--sh);
+  padding:14px;
+}
+.agentic-card h4 { margin:0 0 8px 0; color:var(--ink); font-size:.92rem; }
+.agentic-sub { margin:0 0 12px 0; color:var(--ink2); font-size:.76rem; line-height:1.55; }
+.agentic-form {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px;
+}
+.agentic-form .full { grid-column:1 / -1; }
+.agentic-field { display:flex; flex-direction:column; gap:6px; }
+.agentic-field label {
+  font-size:.68rem;
+  color:var(--ink3);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-family:'DM Mono', monospace;
+}
+.agentic-field input, .agentic-field textarea, .agentic-field select {
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--bdr2);
+  border-radius:10px;
+  background:#fff;
+  color:var(--ink);
+  outline:none;
+}
+.agentic-actions {
+  display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:12px;
+}
+.agentic-list {
+  display:flex; flex-direction:column; gap:10px; margin-top:12px;
+  max-height: 420px; overflow:auto;
+}
+.agentic-item {
+  border:1px solid var(--bdr);
+  border-radius:12px;
+  background:linear-gradient(180deg,#fff,#fafbf8);
+  padding:12px;
+}
+.agentic-item h5 { margin:0 0 6px 0; color:var(--ink); font-size:.85rem; }
+.agentic-item p { margin:0; color:var(--ink2); font-size:.76rem; line-height:1.55; }
+.agentic-note {
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:10px;
+  background: rgba(166,128,61,.06);
+  border:1px dashed rgba(166,128,61,.18);
+  color:var(--ink2);
+  font-size:.75rem;
+  line-height:1.55;
+}
+.chat-box {
+  border:1px solid var(--bdr);
+  border-radius:12px;
+  background:var(--s2);
+  min-height:360px;
+  max-height:460px;
+  overflow:auto;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.chat-msg {
+  border-radius:12px;
+  padding:10px 12px;
+  line-height:1.62;
+  font-size:.78rem;
+  white-space:pre-wrap;
+}
+.chat-user {
+  align-self:flex-end;
+  max-width:88%;
+  background: linear-gradient(135deg, #1f3a2f, #355646);
+  color:#fff;
+}
+.chat-agent {
+  align-self:flex-start;
+  max-width:92%;
+  background:#fff;
+  color:var(--ink);
+  border:1px solid var(--bdr);
+}
+.chat-meta {
+  margin-top:6px;
+  font-size:.66rem;
+  color:var(--ink3);
+}
+.chat-row {
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:10px;
+  margin-top:12px;
+}
+.chat-row textarea { min-height: 96px; }
+.agentic-kpis {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.agentic-kpi {
+  border:1px solid var(--bdr);
+  border-radius:12px;
+  background:var(--s2);
+  padding:12px;
+  text-align:center;
+}
+.agentic-kpi .v { font-size:1.05rem; font-weight:800; color:var(--accent); }
+.agentic-kpi .l { font-size:.66rem; color:var(--ink3); text-transform:uppercase; letter-spacing:.06em; }
+@media (max-width: 980px){
+  .agentic-grid { grid-template-columns:1fr; }
+  .agentic-form { grid-template-columns:1fr; }
+  .chat-row { grid-template-columns:1fr; }
+  .agentic-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
 </style>
 </head>
 <body>
@@ -536,7 +681,108 @@ a:hover { color: #162b23 !important; }
     </div>
     <div id="uploadDocs" class="docs-stack"></div>
   </div>
+
 </div>
+
+<section id="agenticWorkbench" class="agentic-workbench">
+  <div class="agentic-head">
+    <div>
+      <h3>Agente de Estudo e Novas Fontes de Pesquisa</h3>
+      <p>Cadastre novos sites e links acadêmicos e converse com o agente para organizar o estudo, usar o Manual do Professor, estruturar apresentações e consolidar PDFs e fontes em um texto único.</p>
+    </div>
+    <span class="tag tag-y">agentic rag</span>
+  </div>
+
+  <div class="agentic-grid">
+    <div class="agentic-card">
+      <h4>1. Cadastrar novas fontes de pesquisa</h4><p class="agentic-sub"><strong>Use este painel</strong> para incluir novos sites e links que o agente também poderá considerar durante a organização do estudo.</p>
+      <p class="agentic-sub">Adicione diretrizes, atlas, aulas, artigos e páginas específicas para complementar o estudo. As fontes ficam persistidas no backend.</p>
+
+      <div class="agentic-form">
+        <div class="agentic-field">
+          <label for="srcName">Nome da fonte</label>
+          <input id="srcName" type="text" placeholder="Ex.: Diretriz de Nefrologia, Atlas Clínico, PubMed">
+        </div>
+        <div class="agentic-field">
+          <label for="srcUrl">Link / URL</label>
+          <input id="srcUrl" type="text" placeholder="https://...">
+        </div>
+        <div class="agentic-field">
+          <label for="srcCategory">Categoria</label>
+          <select id="srcCategory">
+            <option value="geral">Geral</option>
+            <option value="patologia">Patologia</option>
+            <option value="radiologia">Radiologia</option>
+            <option value="histologia">Histologia</option>
+            <option value="anatomia">Anatomia</option>
+            <option value="clínica">Clínica</option>
+            <option value="cirurgia">Cirurgia</option>
+          </select>
+        </div>
+        <div class="agentic-field">
+          <label for="srcType">Tipo</label>
+          <select id="srcType">
+            <option value="site">Site</option>
+            <option value="link">Link</option>
+            <option value="guia">Guia</option>
+            <option value="artigo">Artigo</option>
+          </select>
+        </div>
+        <div class="agentic-field full">
+          <label for="srcNotes">Observação</label>
+          <textarea id="srcNotes" rows="3" placeholder="Ex.: melhor fonte para imagem, artigo de revisão, casos clínicos, atualização terapêutica..."></textarea>
+        </div>
+      </div>
+
+      <div class="agentic-actions">
+        <button class="btn btn-g" onclick="addSource()">Adicionar fonte</button>
+        <button class="btn btn-a" onclick="loadSources()">Atualizar lista</button>
+        <span class="tag tag-b" id="sourcesCount">0 fontes</span>
+      </div>
+
+      <div class="agentic-note">
+        Dica: cadastre links específicos de páginas úteis, como atlas, diretrizes, aulas e protocolos. Isso ajuda a centralizar o estudo no próprio sistema.
+      </div>
+
+      <div id="sourcesList" class="agentic-list"></div>
+    </div>
+
+    <div class="agentic-card">
+      <h4>2. Chat com o agente AI</h4><p class="agentic-sub"><strong>Use este chat</strong> para pedir: texto único, execução dos próximos passos, checklist da apresentação com base no Manual do Professor e consolidação dos PDFs e fontes.</p>
+      <p class="agentic-sub">Peça ao agente para usar o tema pesquisado, o Manual do Professor, os PDFs enviados e as fontes cadastradas para montar roteiro, checklist, texto único, próximos passos e plano de estudo.</p>
+
+      <div id="agentChat" class="chat-box">
+        <div class="chat-msg chat-agent">Olá. Eu sou o agente de estudo.
+
+Você pode me pedir, por exemplo:
+- "Organize um roteiro de estudo sobre nefrolitíase"
+- "Use meus PDFs e monte um resumo aprofundado"
+- "Use o Manual do Professor como guia da apresentação"
+- "Execute os próximos passos e transforme em texto único"
+
+<div class="chat-meta">Agente AI</div></div>
+      </div>
+
+      <div class="chat-row">
+        <textarea id="agentInput" placeholder="Ex.: Preciso que estruture o conteúdo com base no Manual do Professor, use os PDFs anexados e organize um texto único sobre o tema pesquisado."></textarea>
+        <button class="btn btn-p" onclick="sendAgentMessage()">Enviar ao agente</button>
+      </div>
+
+      <div class="agentic-actions">
+        <button class="btn btn-g" onclick="generateAgentReport()">Gerar síntese do tema pesquisado</button>
+        <button class="btn btn-a" onclick="clearAgentChat()">Limpar chat</button>
+        <span class="tag tag-g" id="agentState">agente pronto</span>
+      </div>
+
+      <div class="agentic-kpis">
+        <div class="agentic-kpi"><div class="v" id="agentKDocs">0</div><div class="l">Docs</div></div>
+        <div class="agentic-kpi"><div class="v" id="agentKSrc">0</div><div class="l">Fontes</div></div>
+        <div class="agentic-kpi"><div class="v" id="agentKObj">0</div><div class="l">Objetivos</div></div>
+        <div class="agentic-kpi"><div class="v" id="agentKSteps">0</div><div class="l">Próx. passos</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- LAYOUT -->
 <div class="layout">
@@ -1323,17 +1569,18 @@ function buildPrompt(query, results, kb, terms) {
 // ══════════════════════════════════════════════════════════════════
 async function checkBackend() {
   try {
-    const r = await fetch(`${API}/status`, { signal: AbortSignal.timeout(3000) });
+    const r = await fetch(`${API}/status`, { signal: AbortSignal.timeout(4000) });
     const d = await r.json();
     if (d.ok) {
-      $('backendStatusChip').textContent = `✅ Backend: ${d.server?.split(' ')[0] || 'OK'}`;
+      const llmLabel = d.anthropic_key_set ? ' · LLM ✅' : ' · LLM ⚠ sem chave';
+      $('backendStatusChip').textContent = `✅ Backend OK${llmLabel}`;
       $('backendStatusChip').style.color = 'var(--grn)';
       return true;
     }
   } catch (e) {
     $('backendStatusChip').textContent = '❌ Backend offline';
     $('backendStatusChip').style.color = 'var(--red)';
-    setStatus('⚠ Backend indisponível no domínio publicado. Aguarde alguns instantes e atualize a página.', 'err');
+    setStatus('⚠ Backend indisponível. Execute: python start.py', 'err');
   }
   return false;
 }
@@ -1545,7 +1792,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Conecta ao backend
   const backendOk = await checkBackend();
-  if (backendOk) await fetchIndex();
+  if (backendOk) { await fetchIndex(); try { await loadSources(); } catch(e) { console.warn(e); } }
 
   // Eventos
   $('sbtn').addEventListener('click', performSearch);
@@ -1564,6 +1811,291 @@ document.addEventListener('DOMContentLoaded', async () => {
     catch { setStatus('Copie manualmente do campo acima.', 'err'); }
   });
 });
+
+// ══════════════════════════════════════════════════════════════════
+//  AGENTIC RAG + FONTES DO ALUNO
+// ══════════════════════════════════════════════════════════════════
+let _sourcesData = [];
+let _agentHistory = [];
+
+function escHtml(s){
+  return String(s ?? '').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+}
+
+function currentTheme(){
+  return ($('qi')?.value || '').trim();
+}
+
+function mdToHtml(text) {
+  // Converte markdown simples para HTML para exibição no chat do agente
+  let h = escHtml(text);
+  // Headers ## e ###
+  h = h.replace(/^### (.+)$/gm, '<strong style="font-size:.85rem;color:var(--accent)">$1</strong>');
+  h = h.replace(/^## (.+)$/gm, '<strong style="font-size:.92rem;color:var(--accent);display:block;margin-top:10px;margin-bottom:4px">$1</strong>');
+  h = h.replace(/^# (.+)$/gm, '<strong style="font-size:1rem;color:var(--accent);display:block;margin-top:12px;margin-bottom:6px">$1</strong>');
+  // Bold **text**
+  h = h.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  // Listas - item
+  h = h.replace(/^[-•] (.+)$/gm, '<div style="display:flex;gap:6px;margin:2px 0"><span style="color:var(--accent);flex-shrink:0">·</span><span>$1</span></div>');
+  // Listas numeradas
+  h = h.replace(/^(\d+)\. (.+)$/gm, '<div style="display:flex;gap:6px;margin:2px 0"><span style="color:var(--accent);flex-shrink:0;min-width:16px">$1.</span><span>$2</span></div>');
+  // Linha horizontal ---
+  h = h.replace(/^---+$/gm, '<hr style="border:none;border-top:1px solid var(--bdr);margin:8px 0">');
+  // Quebras de linha duplas → parágrafo
+  h = h.replace(/\n\n/g, '<br><br>');
+  h = h.replace(/\n/g, '<br>');
+  return h;
+}
+
+function appendAgentMessage(role, text) {
+  const box = $('agentChat');
+  if (!box) return;
+  const who = role === 'user' ? 'Aluno' : 'Agente AI';
+  const cls = role === 'user' ? 'chat-user' : 'chat-agent';
+  const el = document.createElement('div');
+  el.className = `chat-msg ${cls}`;
+  if (role === 'agent') {
+    el.innerHTML = mdToHtml(text) + `<div class="chat-meta">${who}</div>`;
+  } else {
+    el.innerHTML = escHtml(text) + `<div class="chat-meta">${who}</div>`;
+  }
+  box.appendChild(el);
+  box.scrollTop = box.scrollHeight;
+}
+
+function clearAgentChat(){
+  _agentHistory = [];
+  const box = $('agentChat');
+  if (!box) return;
+  box.innerHTML = `<div class="chat-msg chat-agent">Olá. Eu sou o agente de estudo.
+
+Você pode me pedir, por exemplo:
+- "Organize um roteiro de estudo sobre nefrolitíase"
+- "Use meus PDFs e monte um resumo aprofundado"
+- "Use o Manual do Professor como guia da apresentação"
+- "Execute os próximos passos e transforme em texto único"
+
+<div class="chat-meta">Agente AI</div></div>`;
+  $('agentState').textContent = 'agente pronto';
+}
+
+async function loadSources(){
+  try{
+    const r = await fetch(`${API}/sources`);
+    const d = await r.json();
+    _sourcesData = Array.isArray(d.sources) ? d.sources : [];
+    renderSourcesManager();
+  }catch(e){
+    console.error(e);
+    if ($('sourcesList')) $('sourcesList').innerHTML = '<div class="agentic-item"><p>Erro ao carregar fontes cadastradas.</p></div>';
+  }
+}
+
+function renderSourcesManager(){
+  const list = $('sourcesList');
+  const count = $('sourcesCount');
+  if (!list || !count) return;
+  count.textContent = `${_sourcesData.length} fonte${_sourcesData.length === 1 ? '' : 's'}`;
+  if (!_sourcesData.length){
+    list.innerHTML = '<div class="agentic-item"><p>Nenhuma fonte cadastrada até o momento.</p></div>';
+    return;
+  }
+  list.innerHTML = _sourcesData.map(s => `
+    <div class="agentic-item">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+        <div style="min-width:0">
+          <h5>${escHtml(s.name || 'Fonte')}</h5>
+          <p>${escHtml(s.notes || 'Sem observação.')}</p>
+          <p style="margin-top:6px"><a href="${escHtml(s.url || '#')}" target="_blank" rel="noopener noreferrer">${escHtml(s.url || '')}</a></p>
+          <div class="chat-meta">${escHtml(s.category || 'geral')} · ${escHtml(s.type || 'site')}</div>
+        </div>
+        <button class="doc-remove" title="Remover fonte" onclick="deleteSource('${escHtml(s.id || '')}')">×</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function addSource(){
+  const payload = {
+    name: ($('srcName')?.value || '').trim(),
+    url: ($('srcUrl')?.value || '').trim(),
+    category: $('srcCategory')?.value || 'geral',
+    type: $('srcType')?.value || 'site',
+    notes: ($('srcNotes')?.value || '').trim()
+  };
+  if (!payload.name || !payload.url){
+    setStatus('Preencha nome e link da nova fonte.', 'err');
+    return;
+  }
+  try{
+    const r = await fetch(`${API}/sources`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    if (d.error){
+      setStatus(`Erro ao adicionar fonte: ${d.error}`, 'err');
+      return;
+    }
+    $('srcName').value = '';
+    $('srcUrl').value = '';
+    $('srcNotes').value = '';
+    await loadSources();
+    setStatus('Fonte adicionada com sucesso.', 'ok');
+  }catch(e){
+    setStatus(`Erro ao adicionar fonte: ${e.message}`, 'err');
+  }
+}
+
+async function deleteSource(id){
+  if (!id) return;
+  if (!confirm('Remover esta fonte cadastrada?')) return;
+  try{
+    const r = await fetch(`${API}/sources/${encodeURIComponent(id)}`, { method: 'DELETE' });
+    const d = await r.json();
+    if (d.error){
+      setStatus(`Erro ao remover fonte: ${d.error}`, 'err');
+      return;
+    }
+    await loadSources();
+    setStatus('Fonte removida.', 'ok');
+  }catch(e){
+    setStatus(`Erro ao remover fonte: ${e.message}`, 'err');
+  }
+}
+
+function updateAgentKPIs(d){
+  $('agentKDocs').textContent = String(d?.counts?.pdf_evidence ?? 0);
+  $('agentKSrc').textContent = String(d?.counts?.external_sources ?? ((d.external_sources || []).length || 0));
+  $('agentKObj').textContent = String((d.learning_objectives || []).length || 0);
+  $('agentKSteps').textContent = String((d.next_steps || []).length || 0);
+}
+
+function buildAgentResponseText(d){
+  const blocks = [];
+  if (Array.isArray(d.learning_objectives) && d.learning_objectives.length){
+    blocks.push('Objetivos de estudo:\n- ' + d.learning_objectives.join('\n- '));
+  }
+  if (d.presentation_checklist && d.presentation_checklist.length){
+    blocks.push('Checklist para apresentação:\n- ' + d.presentation_checklist.join('\n- '));
+  }
+  if (d.compiled_study_text){
+    blocks.push('Texto compilado:\n' + d.compiled_study_text);
+  }
+  if (d.deep_synthesis){
+    blocks.push('Síntese aprofundada:\n' + d.deep_synthesis);
+  }
+  if (Array.isArray(d.next_steps) && d.next_steps.length){
+    blocks.push('Próximos passos:\n- ' + d.next_steps.join('\n- '));
+  }
+  return blocks.join('\n\n') || 'Resposta do agente gerada.';
+}
+
+async function sendAgentMessage(){
+  const userText = ($('agentInput')?.value || '').trim();
+  const theme = currentTheme();
+  if (!userText && !theme){
+    setStatus('Digite sua solicitação ao agente.', 'err');
+    return;
+  }
+  const msg = userText || theme;
+  appendAgentMessage('user', msg);
+  _agentHistory.push({role:'user', content: msg});
+  $('agentInput').value = '';
+
+  // Feedback visual de carregamento
+  $('agentState').textContent = '⏳ pensando...';
+  const loadingEl = document.createElement('div');
+  loadingEl.className = 'chat-msg chat-agent';
+  loadingEl.id = 'agentLoadingMsg';
+  loadingEl.innerHTML = '<em style="color:var(--ink3)">Agente processando… aguarde.</em>';
+  $('agentChat').appendChild(loadingEl);
+  $('agentChat').scrollTop = $('agentChat').scrollHeight;
+
+  try{
+    const r = await fetch(`${API}/chat`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        message: msg,
+        current_theme: theme,
+        history: _agentHistory.slice(-14)
+      })
+    });
+    const d = await r.json();
+
+    // Remove loading
+    document.getElementById('agentLoadingMsg')?.remove();
+
+    if (d.error){
+      appendAgentMessage('agent', `⚠ Erro: ${d.error}`);
+      $('agentState').textContent = 'erro';
+      return;
+    }
+
+    const responseText = d.reply || buildAgentResponseText(d);
+    appendAgentMessage('agent', responseText);
+    _agentHistory.push({role:'assistant', content: responseText, report: d});
+    updateAgentKPIs(d);
+
+    const modeLabel = d.llm_used ? '✅ LLM Anthropic' : '⚙ fallback local';
+    const intentLabel = d.intent ? ` · ${d.intent}` : '';
+    $('agentState').textContent = `pronto · ${modeLabel}${intentLabel}`;
+  }catch(e){
+    document.getElementById('agentLoadingMsg')?.remove();
+    appendAgentMessage('agent', `⚠ Erro ao consultar o agente: ${e.message}`);
+    $('agentState').textContent = 'erro de rede';
+  }
+}
+
+async function generateAgentReport(){
+  const theme = currentTheme();
+  if (!theme){
+    setStatus('Digite o tema principal antes de gerar a síntese.', 'err');
+    return;
+  }
+  $('agentState').textContent = '⏳ gerando síntese...';
+
+  const loadingEl = document.createElement('div');
+  loadingEl.className = 'chat-msg chat-agent';
+  loadingEl.id = 'agentLoadingMsg';
+  loadingEl.innerHTML = '<em style="color:var(--ink3)">Gerando síntese completa do tema… aguarde.</em>';
+  $('agentChat').appendChild(loadingEl);
+  $('agentChat').scrollTop = $('agentChat').scrollHeight;
+
+  try{
+    const r = await fetch(`${API}/chat`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        message: `Organize um relatório de estudo completo sobre ${theme}. Produza texto acadêmico único, checklist para apresentação, objetivos e próximos passos.`,
+        current_theme: theme,
+        history: _agentHistory.slice(-14)
+      })
+    });
+    const d = await r.json();
+
+    document.getElementById('agentLoadingMsg')?.remove();
+
+    if (d.error){
+      $('agentState').textContent = 'erro';
+      setStatus(`Erro no agente: ${d.error}`, 'err');
+      return;
+    }
+    const responseText = d.reply || buildAgentResponseText(d);
+    appendAgentMessage('agent', responseText);
+    _agentHistory.push({role:'assistant', content: responseText, report: d});
+    updateAgentKPIs(d);
+    const modeLabel = d.llm_used ? '✅ LLM Anthropic' : '⚙ fallback local';
+    $('agentState').textContent = `síntese pronta · ${modeLabel}`;
+  }catch(e){
+    document.getElementById('agentLoadingMsg')?.remove();
+    $('agentState').textContent = 'erro';
+    setStatus(`Erro ao rodar agente: ${e.message}`, 'err');
+  }
+}
+
 </script>
 </body>
 </html>

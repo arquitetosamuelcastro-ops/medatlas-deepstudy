@@ -1,0 +1,9 @@
+__pycache__/ 
+*.pyo 
+*.pyd 
+medatlas_cache/ 
+medstudy-frontend/ 
+.env 
+.env.* 
+Thumbs.db 
+*.pyc 
