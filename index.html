@@ -611,42 +611,76 @@ async function fetchIndex(){
   }catch(e){console.warn('fetchIndex:',e);}
 }
 
-// ── UPLOAD PDF ────────────────────────────────────────────────────────────────
+// ── UPLOAD PDF com polling (evita timeout do Render.com) ─────────────────────
 async function uploadPDFs(files){
   if(!files.length)return;
   const doOCR=$('ocrToggle').checked;
-  setStatus(`Enviando ${files.length} arquivo(s) para o backend...`);
+  setStatus(`Enviando ${files.length} arquivo(s)...`);
   setProgress(5);
 
   const form=new FormData();
   for(const f of files)form.append('files',f);
   form.append('ocr',doOCR?'true':'false');
 
+  let jobId=null;
   try{
-    setProgress(15);
-    setStatus('Processando PDFs (pdfplumber + BM25)...');
+    // 1. Envia e recebe job_id imediatamente
     const resp=await fetch(`${API}/upload`,{method:'POST',body:form});
-    const data=await resp.json();
-    setProgress(90);
-
-    if(data.error){setStatus(`Erro: ${data.error}`,'err');return;}
-
-    let msgParts=[];
-    for(const res of data.results||[]){
-      if(res.error){
-        setStatus(`✗ ${res.name}: ${res.error}`,'err');
-      } else {
-        msgParts.push(`✓ ${res.name}: ${res.pages} págs, ${res.chunks} chunks`);
-        // observabilidade
-        showObs(res);
-      }
+    const text=await resp.text();
+    let data;
+    try{ data=JSON.parse(text); }
+    catch(e){
+      setStatus(`Erro do servidor: ${text.slice(0,120)}`,'err');
+      setProgress(0); return;
     }
-    if(msgParts.length)setStatus(msgParts.join(' | '),'ok');
-    setProgress(100);
-    await fetchIndex();
+    if(!resp.ok||data.error){
+      setStatus(`Erro: ${data.error||data.detail||'falha no upload'}`,'err');
+      setProgress(0); return;
+    }
+    jobId=data.job_id;
+    setStatus(`Processando ${data.total_files} arquivo(s) no servidor...`);
+    setProgress(10);
   }catch(e){
     setStatus(`Erro de conexão: ${e.message}`,'err');
+    setProgress(0); return;
   }
+
+  // 2. Polling até completar
+  let attempts=0;
+  const maxAttempts=180; // 6 minutos (180 × 2s)
+  while(attempts<maxAttempts){
+    await new Promise(r=>setTimeout(r,2000));
+    attempts++;
+    try{
+      const sr=await fetch(`${API}/upload/status/${jobId}`);
+      const st=await sr.json();
+      const pct=Math.min(95,10+st.progress*0.85);
+      setProgress(pct);
+      if(st.current_file){
+        const pg=st.current_page||0; const tot=st.total_pages||'?';
+        setStatus(`Processando: ${st.current_file} (pág. ${pg}/${tot})...`);
+      }
+      if(st.status==='done'){
+        setProgress(100);
+        let msgs=[];
+        for(const res of st.results||[]){
+          if(res.error){
+            setStatus(`✗ ${res.name}: ${res.error}`,'err');
+          } else {
+            msgs.push(`✓ ${res.name}: ${res.pages} págs, ${res.chunks} chunks`);
+            showObs(res);
+          }
+        }
+        if(msgs.length)setStatus(msgs.join(' | '),'ok');
+        await fetchIndex();
+        return;
+      }
+    }catch(e){
+      // Ignora erros de polling transientes
+      console.warn('polling error:',e);
+    }
+  }
+  setStatus('Timeout: processamento demorou mais de 6 minutos.','err');
 }
 
 function showObs(res){
